@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 
 const resolve = (dir) => path.join(__dirname, '..', dir);
@@ -104,5 +105,6 @@ module.exports = {
       filename: 'demo2.html',
       chunks: ['demo2'],
     }),
+    new webpack.IgnorePlugin(/\.\/locale/, /moment/), // 忽略 moment 下的 /locale 目录
   ],
 };
