@@ -7,6 +7,7 @@ const htmlPath = resolve('src/views');
 const scriptPath = resolve('src/scripts');
 const distPath = resolve('dist');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 /**
@@ -118,5 +119,14 @@ module.exports = {
       chunks: ['demo2'],
     }),
     new webpack.IgnorePlugin(/\.\/locale/, /moment/), // 忽略 moment 下的 /locale 目录
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          // 将 src/doc 拷贝到 dist/doc
+          from: path.join(srcPath, 'doc'),
+          to: path.join(distPath, 'doc'),
+        },
+      ],
+    }),
   ],
 };
