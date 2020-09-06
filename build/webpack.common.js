@@ -1,11 +1,30 @@
 const path = require('path');
-const srcPath = path.join(__dirname, '..', 'src');
-const distPath = path.join(__dirname, '..', 'dist');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+
+const resolve = (dir) => path.join(__dirname, '..', dir);
+const srcPath = resolve('src');
+const htmlPath = resolve('src/views');
+const scriptPath = resolve('src/scripts');
+const distPath = resolve('dist');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+/**
+ * 多页应用支持
+ * 1. 添加入口文件的配置项
+ * 2. 实例化一个 HtmlWebpackPlugin 实例，并配置chunks，
+ * chunks的值即是配置的入口配置项的key值，默认是全部引用，所以需要指定一下
+ */
+
 module.exports = {
-  entry: path.join(srcPath, 'index'),
+  entry: {
+    index: path.join(srcPath, 'index.js'),
+    demo1: path.join(scriptPath, 'demo1.js'),
+    demo2: path.join(scriptPath, 'demo2.js'),
+  },
+  output: {
+    filename: '[name].[hash:8].js',
+    path: distPath,
+  },
   module: {
     rules: [
       {
@@ -44,12 +63,24 @@ module.exports = {
     ],
   },
   plugins: [
-    new htmlWebpackPlugin({
-      template: path.join(srcPath, 'index.html'),
-      filename: 'index.html',
-    }),
     new CleanWebpackPlugin({
       verbose: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(srcPath, 'index.html'),
+      filename: 'index.html',
+      chunks: ['index'], // 只引用 index.js
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(htmlPath, 'demo1.html'),
+      filename: 'demo1.html',
+      chunks: ['demo1'],
+    }),
+
+    new HtmlWebpackPlugin({
+      template: path.join(htmlPath, 'demo2.html'),
+      filename: 'demo2.html',
+      chunks: ['demo2'],
     }),
   ],
 };
