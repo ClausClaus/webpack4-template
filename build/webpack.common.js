@@ -26,6 +26,7 @@ module.exports = {
     path: distPath,
   },
   module: {
+    noParse: '/jquery|lodash/',
     rules: [
       {
         test: /\.js$/,
