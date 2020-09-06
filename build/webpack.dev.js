@@ -9,7 +9,9 @@ module.exports = merge(webpackCommonConf, {
   mode: 'development',
   plugins: [
     new webpack.DefinePlugin({
-      ENV: JSON.stringify('development'),
+      'process.env': {
+        env: JSON.stringify('dev'),
+      },
     }),
   ],
   devServer: {
