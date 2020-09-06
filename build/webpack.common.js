@@ -62,6 +62,17 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        common: {
+          chunks: 'initial',
+          minSize: 0,
+          minChunks: 2,
+        },
+      },
+    },
+  },
   plugins: [
     new CleanWebpackPlugin({
       verbose: true,
