@@ -26,6 +26,18 @@ module.exports = {
     filename: '[name].[hash:8].js',
     path: distPath,
   },
+  resolve: {
+    alias: {
+      // 路径重定向
+      '@': resolve(srcPath),
+      src: resolve(srcPath),
+      scripts: resolve('src/scripts'),
+      common: resolve('src/common'),
+      inner: resolve('src/common/inner'),
+      assets: resolve('assets'),
+    },
+    extensions: ['.js', '.json'],
+  },
   module: {
     noParse: '/jquery|lodash/',
     rules: [

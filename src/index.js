@@ -2,6 +2,10 @@ import './index.css';
 import './index.less';
 import _ from 'lodash';
 
+// 测试webpack alias别名是否起效果
+import { testAlias } from 'inner/inner';
+testAlias();
+
 //配置webpack ignorePlugin,将moment的语言包去除，可减少 moment 模块打包后的大小
 import moment from 'moment';
 import 'moment/locale/zh-cn'; // 手动引入中文语言包
