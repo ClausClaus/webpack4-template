@@ -65,6 +65,16 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
+        // 第三方模块
+        vendor: {
+          priority: 1,
+          test: /node_modules/,
+          chunks: 'initial',
+          minSize: 0,
+          minChunks: 1,
+        },
+
+        // 公共模块打包
         common: {
           chunks: 'initial',
           minSize: 0,
