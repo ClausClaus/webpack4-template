@@ -51,7 +51,7 @@ module.exports = merge(webpackCommonConf, {
     minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
   },
   output: {
-    filename: 'bundle.[contentHash:8].js',
+    filename: '[name].[hash:8].js',
     path: distPath,
   },
   plugins: [
