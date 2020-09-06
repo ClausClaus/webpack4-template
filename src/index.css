@@ -1,0 +1,15 @@
+.color {
+  color: red;
+}
+
+.bgc-img {
+  width: 420px;
+  height: 420px;
+  background-image: url('./assets/21154310.jpeg');
+}
+
+/* test postcss-loader */
+
+.bgc-filter {
+  filter: blur(5px);
+}
